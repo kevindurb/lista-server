@@ -1,0 +1,13 @@
+{
+  "name": "lista-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kevindurb/lista-server.git",
+  "author": "Kevin Durbin <kevindurb@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.28"
+  }
+}
