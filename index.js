@@ -1,5 +1,10 @@
 const express = require('express');
+
 const app = express();
+
+require('dotenv').config();
+
+app.use(require('./db').provider);
 
 app.use(require('./routes'));
 
