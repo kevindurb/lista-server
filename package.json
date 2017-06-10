@@ -9,6 +9,7 @@
     "axios": "^0.16.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
-    "mongodb": "^2.2.28"
+    "mongodb": "^2.2.28",
+    "promisify-node": "^0.4.0"
   }
 }
