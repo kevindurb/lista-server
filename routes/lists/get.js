@@ -1,5 +1,4 @@
 const dbu = require('../../utils/db');
-const debug = require('../../utils/debug');
 
 module.exports = (req, res) => {
   Promise.resolve(req.db)

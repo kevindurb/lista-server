@@ -1,6 +1,7 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 
-require('./lists')(router);
+router.use('/lists', require('./lists'));
+router.use('/auth', require('./auth'));
+router.use('/users', require('./users'));
 
 module.exports = router;
