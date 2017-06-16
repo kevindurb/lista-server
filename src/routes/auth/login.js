@@ -1,6 +1,5 @@
 const log = require('debug')('lista:auth');
 const bcrypt = require('bcrypt');
-const user = require('../../db/users');
 const responses = require('../../utils/responses');
 
 module.exports = (req) => {
@@ -9,10 +8,10 @@ module.exports = (req) => {
 
   log('login: %s', username);
 
-  return user.getUserByUsername(username)
+  return req.db.users.getByUsername(username)
   .then((user) => {
     if (user) {
-      bcrypt.compare(password, user.passwordHash)
+      bcrypt.compare(password, user.passwordDigest)
       .then((matches) => {
         if (matches) {
           req.session.user = user;

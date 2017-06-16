@@ -5,6 +5,7 @@ module.exports = action => (request, response) => {
     response.status(data.status || 200).send(JSON.stringify(data.body));
   })
   .catch((error) => {
-    log('[ERROR]: %s', error);
+    log(error);
+    response.status(500).end();
   });
 };
