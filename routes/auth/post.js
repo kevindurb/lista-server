@@ -1,5 +1,6 @@
 const log = require('debug')('lista:auth');
 const bcrypt = require('bcrypt');
+const user = require('../../db/users');
 
 module.exports = (req, res) => {
   const username = req.body.username;
@@ -7,8 +8,7 @@ module.exports = (req, res) => {
 
   log('user: %s', username);
 
-  req.db.collection('users')
-  .findOne({ username })
+  user.getUserByUsername(username)
   .then((user) => {
     if (user) {
       bcrypt.compare(password, user.passwordHash)
