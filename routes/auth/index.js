@@ -1,7 +1,6 @@
 const router = require('express').Router();
+const thenSend = require('../../utils/thenSend');
 
-router.post('/', require('./post'));
-router.delete('/', require('./delete'));
-router.get('/', require('./get'));
+router.post('/', thenSend(require('./login')));
 
 module.exports = router;

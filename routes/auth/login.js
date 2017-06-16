@@ -1,27 +1,28 @@
 const log = require('debug')('lista:auth');
 const bcrypt = require('bcrypt');
 const user = require('../../db/users');
+const responses = require('../../utils/responses');
 
-module.exports = (req, res) => {
+module.exports = (req) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  log('user: %s', username);
+  log('login: %s', username);
 
-  user.getUserByUsername(username)
+  return user.getUserByUsername(username)
   .then((user) => {
     if (user) {
       bcrypt.compare(password, user.passwordHash)
       .then((matches) => {
         if (matches) {
           req.session.user = user;
-          res.status(200).send(JSON.stringify(user));
+          return responses.success(user);
         } else {
-          res.status(400).send('Bad Request');
+          return responses.badRequest();
         }
       });
     } else {
-      res.status(404).send('Not Found');
+      return responses.notFound();
     }
   });
 };
