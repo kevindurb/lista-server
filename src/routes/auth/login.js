@@ -1,21 +1,34 @@
 const log = require('debug')('lista:auth');
 const bcrypt = require('bcrypt');
+
 const responses = require('../../utils/responses');
+const loginSchema = require('../../schemas/login');
+const userPresenter = require('../../presenters/user');
 
 module.exports = (req) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  const body = req.body;
+  const db = req.db;
+  const result = loginSchema.validate(body);
+  const credentials = result.value;
 
-  log('login: %s', username);
+  if (result.error) {
+    return responses.badRequest();
+  }
 
-  return req.db.users.getByUsername(username)
+  log('login: %s', credentials.username);
+
+  return req.db.users.getByUsername(credentials.username)
   .then((user) => {
     if (user) {
-      bcrypt.compare(password, user.passwordDigest)
+      log(credentials.password);
+      log(user.passwordDigest);
+      return bcrypt.compare(credentials.password, user.passwordDigest)
       .then((matches) => {
         if (matches) {
           req.session.user = user;
-          return responses.success(user);
+          return responses.success(
+            userPresenter(user)
+          );
         } else {
           return responses.badRequest();
         }
