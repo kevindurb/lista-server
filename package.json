@@ -5,6 +5,12 @@
   "repository": "git@github.com:kevindurb/lista-server.git",
   "author": "Kevin Durbin <kevindurb@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon",
+    "test": "mocha ./test/**/*.js",
+    "test:watch": "yarn mocha -- -R min -w ./test/**/*.js"
+  },
   "dependencies": {
     "axios": "^0.16.2",
     "bcrypt": "^1.0.2",
@@ -17,9 +23,13 @@
     "express-session": "^1.15.3",
     "helmet": "^3.6.1",
     "humps": "^2.0.0",
+    "joi": "^10.6.0",
     "mocha": "^3.4.2",
     "pg": "^6.2.4",
     "promisify-node": "^0.4.0",
     "ramda": "^0.24.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

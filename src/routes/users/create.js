@@ -1,27 +1,39 @@
+const R = require('ramda');
 const log = require('debug')('lista:users');
 const bcrypt = require('bcrypt');
+
 const responses = require('../../utils/responses');
+const userSchema = require('../../schemas/user');
+const userPresenter = require('../../presenters/user');
 
 module.exports = (req) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  const body = req.body;
+  const db = req.db;
+  const result = userSchema.validate(body);
+  const user = result.value;
 
-  log('create: %s', username);
+  if (result.error) {
+    return responses.badRequest();
+  }
 
-  return req.db.users.getByUsername(username)
-  .then((user) => {
-    if (user) {
-      bcrypt.compare(password, user.passwordDigest)
-      .then((matches) => {
-        if (matches) {
-          req.session.user = user;
-          return responses.success(user);
-        } else {
-          return responses.badRequest();
-        }
-      });
-    } else {
-      return responses.notFound();
-    }
-  });
+  return bcrypt.hash(user.password, 10)
+    .then((passwordDigest) => {
+      return db.users.insertNew(R.merge(
+        user,
+        R.objOf('passwordDigest', passwordDigest)
+      ));
+    })
+    .then(() => (
+      db.users.getByUsername(user.username)
+    ))
+    .then((user) => {
+      log('here');
+      return responses.success(
+        userPresenter(user)
+      );
+    })
+    .catch((error) => {
+      log(error);
+      return responses.badRequest();
+    })
 };

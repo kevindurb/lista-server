@@ -11,5 +11,25 @@ module.exports = {
     return pool.query('select * from users where username = $1', [username])
       .then(helpers.firstRow)
       .then(helpers.camelize);
+  },
+  insertNew(user) {
+    return pool.query(
+      `
+      insert into users (
+        username,
+        first_name,
+        last_name,
+        password_digest
+      ) values ($1, $2, $3, $4)
+      `,
+      [
+        user.username,
+        user.firstName,
+        user.lastName,
+        user.passwordDigest
+      ]
+    )
+      .then(helpers.firstRow)
+      .then(helpers.camelize);
   }
 };
