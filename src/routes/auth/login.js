@@ -7,7 +7,6 @@ const userPresenter = require('../../presenters/user');
 
 module.exports = (req) => {
   const body = req.body;
-  const db = req.db;
   const result = loginSchema.validate(body);
   const credentials = result.value;
 
