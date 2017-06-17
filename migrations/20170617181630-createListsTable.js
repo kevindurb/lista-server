@@ -15,18 +15,14 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = db => (
-  db.createTable('users', {
+  db.createTable('lists', {
     id: {
       type: 'int',
       primaryKey: true,
       authIncrement: true,
     },
-    username: {
-      type: 'text',
-      unique: true,
-    },
+    owner_id: 'int',
     name: 'text',
-    password_digest: 'text',
     created_at: {
       type: 'date',
       defaultValue: 'now()',
@@ -36,7 +32,7 @@ exports.up = db => (
 );
 
 exports.down = db => (
-  db.dropTable('users')
+  db.dropTable('lists')
 );
 
 exports._meta = {
