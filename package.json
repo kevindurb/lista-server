@@ -5,17 +5,20 @@
   "repository": "git@github.com:kevindurb/lista-server.git",
   "author": "Kevin Durbin <kevindurb@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "scripts": {
     "start": "node index.js",
     "start:dev": "nodemon",
     "test": "mocha ./test/**/*.js",
-    "test:watch": "yarn mocha -- -R min -w ./test/**/*.js"
+    "test:watch": "yarn mocha -- -R min -w ./test/**/*.js",
+    "lint": "eslint ."
   },
   "dependencies": {
     "axios": "^0.16.2",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
-    "chai": "^4.0.2",
     "connect-redis": "^3.3.0",
     "db-migrate": "^0.10.0-beta.20",
     "db-migrate-pg": "^0.1.11",
@@ -26,12 +29,15 @@
     "helmet": "^3.6.1",
     "humps": "^2.0.0",
     "joi": "^10.6.0",
-    "mocha": "^3.4.2",
     "pg": "^6.2.4",
     "promisify-node": "^0.4.0",
     "ramda": "^0.24.1"
   },
   "devDependencies": {
+    "chai": "^4.0.2",
+    "eslint": "^4.0.0",
+    "eslint-plugin-node": "^5.0.0",
+    "mocha": "^3.4.2",
     "nodemon": "^1.11.0"
   }
 }
