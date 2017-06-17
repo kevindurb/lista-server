@@ -1,6 +1,3 @@
-const R = require('ramda');
-const log = require('debug')('lista:lists');
-
 const responses = require('../../utils/responses');
 const session = require('../../utils/session');
 const listSchema = require('../../schemas/list');

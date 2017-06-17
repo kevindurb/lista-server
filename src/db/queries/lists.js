@@ -1,10 +1,10 @@
-const log = require('debug')('lista:listsQueries');
 const pool = require('../pool');
 const helpers = require('../helpers');
 
 module.exports = {
   getAllForOwner(ownerId) {
-    return pool.query('select * from lists where ownerId = $1', [ownerId])
+    return pool.query('select * from lists where owner_id = $1', [ownerId])
+      .then(helpers.getRows)
       .then(helpers.camelize);
   },
   insertNew(list) {
