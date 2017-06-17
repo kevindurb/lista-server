@@ -17,17 +17,17 @@ module.exports = {
       `
       insert into users (
         username,
-        first_name,
-        last_name,
+        name,
         password_digest
-      ) values ($1, $2, $3, $4)
+      ) values ($1, $2, $3)
+      returning *
       `,
       [
         user.username,
-        user.firstName,
-        user.lastName,
+        user.name,
         user.passwordDigest
       ]
-    );
+    ).then(helpers.firstRow)
+      .then(helpers.camelize);
   }
 };

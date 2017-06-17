@@ -1,3 +1,4 @@
+const log = require('debug')('lista:listsQueries');
 const pool = require('../pool');
 const helpers = require('../helpers');
 
@@ -11,13 +12,15 @@ module.exports = {
       `
       insert into lists (
         name,
-        ownerId,
+        owner_id
       ) values ($1, $2)
+      returning *
       `,
       [
         list.name,
         list.ownerId,
       ]
-    );
+    ).then(helpers.firstRow)
+      .then(helpers.camelize);
   }
 };

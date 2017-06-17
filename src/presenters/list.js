@@ -1,4 +1,4 @@
-const schema = require('../schemas/user');
+const schema = require('../schemas/list');
 
 module.exports = (data) => (
   schema.validate(data, {

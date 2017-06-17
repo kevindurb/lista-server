@@ -19,15 +19,18 @@ exports.up = db => (
     id: {
       type: 'int',
       primaryKey: true,
-      authIncrement: true,
+      autoIncrement: true,
     },
     owner_id: 'int',
     name: 'text',
     created_at: {
-      type: 'date',
+      type: 'datetime',
       defaultValue: 'now()',
     },
-    updated_at: 'date',
+    updated_at: {
+      type: 'datetime',
+      defaultValue: 'now()',
+    },
   })
 );
 

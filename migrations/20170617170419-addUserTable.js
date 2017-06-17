@@ -19,7 +19,7 @@ exports.up = db => (
     id: {
       type: 'int',
       primaryKey: true,
-      authIncrement: true,
+      autoIncrement: true,
     },
     username: {
       type: 'text',
@@ -28,10 +28,13 @@ exports.up = db => (
     name: 'text',
     password_digest: 'text',
     created_at: {
-      type: 'date',
+      type: 'datetime',
       defaultValue: 'now()',
     },
-    updated_at: 'date',
+    updated_at: {
+      type: 'datetime',
+      defaultValue: 'now()',
+    },
   })
 );
 

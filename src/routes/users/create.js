@@ -7,9 +7,8 @@ const userSchema = require('../../schemas/user');
 const userPresenter = require('../../presenters/user');
 
 module.exports = (req) => {
-  const body = req.body;
   const db = req.db;
-  const result = userSchema.validate(body);
+  const result = userSchema.validate(req.body);
   const user = result.value;
 
   if (result.error) {
@@ -23,11 +22,7 @@ module.exports = (req) => {
         R.objOf('passwordDigest', passwordDigest)
       ));
     })
-    .then(() => (
-      db.users.getByUsername(user.username)
-    ))
     .then((user) => {
-      log('here');
       return responses.success(
         userPresenter(user)
       );
