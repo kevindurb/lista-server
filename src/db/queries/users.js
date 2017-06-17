@@ -28,8 +28,6 @@ module.exports = {
         user.lastName,
         user.passwordDigest
       ]
-    )
-      .then(helpers.firstRow)
-      .then(helpers.camelize);
+    );
   }
 };
