@@ -12,15 +12,19 @@ module.exports = {
   insertNew(item) {
     return pool.query(
       `
-      insert into lists (
+      insert into items (
         title,
-        list_id
-      ) values ($1, $2)
+        list_id,
+        description,
+        done
+      ) values ($1, $2, $3, $4)
       returning *
       `,
       [
         item.title,
         item.listId,
+        item.description,
+        item.done,
       ]
     ).then(helpers.firstRow)
       .then(helpers.camelize);

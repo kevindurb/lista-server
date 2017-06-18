@@ -24,7 +24,11 @@ exports.up = db => (
     list_id: 'int',
     title: 'text',
     description: 'text',
-    done: 'boolean',
+    done: {
+      type: 'boolean',
+      defaultValue: false,
+      notNull: false,
+    },
     created_at: {
       type: 'datetime',
       defaultValue: 'now()',
