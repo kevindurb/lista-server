@@ -7,6 +7,11 @@ module.exports = {
       .then(helpers.getRows)
       .then(helpers.camelize);
   },
+  getById(id) {
+    return pool.query('select * from lists where id = $1', [id])
+      .then(helpers.firstRow)
+      .then(helpers.camelize);
+  },
   insertNew(list) {
     return pool.query(
       `

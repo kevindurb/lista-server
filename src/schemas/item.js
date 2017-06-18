@@ -2,10 +2,10 @@ const Joi = require('joi');
 
 module.exports = Joi.object({
   id: Joi.number().integer(),
-  username: Joi.string(),
-  password: Joi.string(),
-  firstName: Joi.string(),
-  lastName: Joi.string(),
+  listId: Joi.string(),
+  title: Joi.string(),
+  description: Joi.string(),
+  done: Joi.boolean(),
   createdAt: Joi.date().iso(),
   updatedAt: Joi.date().iso(),
 });
