@@ -1,10 +1,9 @@
+const db = require('../../db');
 const responses = require('../../utils/responses');
 const session = require('../../utils/session');
 const userPresenter = require('../../presenters/user');
 
 module.exports = (req) => {
-  const db = req.db;
-
   if (session.isLoggedOut(req)) {
     return responses.notAuthorized();
   }

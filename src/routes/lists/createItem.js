@@ -1,10 +1,10 @@
+const db = require('../../db');
 const responses = require('../../utils/responses');
 const session = require('../../utils/session');
 const itemSchema = require('../../schemas/item');
 const itemPresenter = require('../../presenters/item');
 
 module.exports = (req) => {
-  const db = req.db;
   const listId = req.params.id;
   const result = itemSchema.validate(req.body);
   const itemData = result.value;

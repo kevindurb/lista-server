@@ -1,9 +1,9 @@
+const db = require('../../db');
 const responses = require('../../utils/responses');
 const session = require('../../utils/session');
 const itemPresenter = require('../../presenters/item');
 
 module.exports = (req) => {
-  const db = req.db;
   const listId = req.params.id;
 
   if (session.isLoggedOut(req)) {

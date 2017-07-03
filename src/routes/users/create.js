@@ -2,12 +2,12 @@ const R = require('ramda');
 const log = require('debug')('lista:users');
 const bcrypt = require('bcrypt');
 
+const db = require('../../db');
 const responses = require('../../utils/responses');
 const userSchema = require('../../schemas/user');
 const userPresenter = require('../../presenters/user');
 
 module.exports = (req) => {
-  const db = req.db;
   const result = userSchema.validate(req.body);
   const user = result.value;
 

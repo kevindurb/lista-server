@@ -20,7 +20,7 @@ app.use(session({
     store: new RedisStore({ url: REDIS_URL }),
     secret: SESSION_SECRET
 }));
-app.use(require('./src/db/inject'));
+
 app.use(require('./src/routes'));
 
 app.listen(HTTP_PORT, function () {

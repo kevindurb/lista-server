@@ -1,10 +1,10 @@
+const db = require('../../db');
 const responses = require('../../utils/responses');
 const session = require('../../utils/session');
 const listSchema = require('../../schemas/list');
 const listPresenter = require('../../presenters/list');
 
 module.exports = (req) => {
-  const db = req.db;
   const result = listSchema.validate(req.body);
   const listData = result.value;
 

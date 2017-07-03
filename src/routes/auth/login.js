@@ -1,6 +1,7 @@
 const log = require('debug')('lista:auth');
 const bcrypt = require('bcrypt');
 
+const db = require('../../db');
 const responses = require('../../utils/responses');
 const loginSchema = require('../../schemas/login');
 const userPresenter = require('../../presenters/user');
@@ -16,7 +17,7 @@ module.exports = (req) => {
 
   log('login: %s', credentials.username);
 
-  return req.db.users.getByUsername(credentials.username)
+  return db.users.getByUsername(credentials.username)
   .then((user) => {
     if (user) {
       log(credentials.password);
