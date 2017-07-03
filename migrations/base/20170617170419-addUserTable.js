@@ -25,7 +25,6 @@ exports.up = db => (
       type: 'text',
       unique: true,
     },
-    name: 'text',
     password_digest: 'text',
     created_at: {
       type: 'datetime',

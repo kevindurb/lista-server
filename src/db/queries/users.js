@@ -17,14 +17,12 @@ module.exports = {
       `
       insert into users (
         username,
-        name,
         password_digest
-      ) values ($1, $2, $3)
+      ) values ($1, $2)
       returning *
       `,
       [
         user.username,
-        user.name,
         user.passwordDigest
       ]
     ).then(helpers.firstRow)

@@ -23,16 +23,16 @@ const userColumns = [
 ];
 
 const users = [
-  ['usr0', 'name0', password],
-  ['usr1', 'name1', password],
-  ['usr2', 'name2', password],
-  ['usr3', 'name3', password],
-  ['usr4', 'name4', password],
-  ['usr5', 'name5', password],
-  ['usr6', 'name6', password],
-  ['usr7', 'name7', password],
-  ['usr8', 'name8', password],
-  ['usr9', 'name9', password],
+  ['usr0', password],
+  ['usr1', password],
+  ['usr2', password],
+  ['usr3', password],
+  ['usr4', password],
+  ['usr5', password],
+  ['usr6', password],
+  ['usr7', password],
+  ['usr8', password],
+  ['usr9', password],
 ];
 
 exports.up = db => (
