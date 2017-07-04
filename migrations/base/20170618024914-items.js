@@ -17,11 +17,11 @@ exports.setup = function(options, seedLink) {
 exports.up = db => (
   db.createTable('items', {
     id: {
-      type: 'int',
+      type: 'uuid',
       primaryKey: true,
-      autoIncrement: true,
+      defaultValue: new String('uuid_generate_v4()'),
     },
-    list_id: 'int',
+    list_id: 'uuid',
     title: 'text',
     description: 'text',
     done: {
@@ -31,11 +31,11 @@ exports.up = db => (
     },
     created_at: {
       type: 'datetime',
-      defaultValue: 'now()',
+      defaultValue: new String('now()'),
     },
     updated_at: {
       type: 'datetime',
-      defaultValue: 'now()',
+      defaultValue: new String('now()'),
     },
   })
 );

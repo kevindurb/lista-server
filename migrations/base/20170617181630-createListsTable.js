@@ -17,19 +17,19 @@ exports.setup = function(options, seedLink) {
 exports.up = db => (
   db.createTable('lists', {
     id: {
-      type: 'int',
+      type: 'uuid',
       primaryKey: true,
-      autoIncrement: true,
+      defaultValue: new String('uuid_generate_v4()'),
     },
-    owner_id: 'int',
+    owner_id: 'uuid',
     name: 'text',
     created_at: {
       type: 'datetime',
-      defaultValue: 'now()',
+      defaultValue: new String('now()'),
     },
     updated_at: {
       type: 'datetime',
-      defaultValue: 'now()',
+      defaultValue: new String('now()'),
     },
   })
 );

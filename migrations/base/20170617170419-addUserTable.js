@@ -15,26 +15,29 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = db => (
-  db.createTable('users', {
-    id: {
-      type: 'int',
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    username: {
-      type: 'text',
-      unique: true,
-    },
-    password_digest: 'text',
-    created_at: {
-      type: 'datetime',
-      defaultValue: 'now()',
-    },
-    updated_at: {
-      type: 'datetime',
-      defaultValue: 'now()',
-    },
-  })
+  db.runSql('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
+  .then(() => (
+    db.createTable('users', {
+      id: {
+        type: 'uuid',
+        primaryKey: true,
+        defaultValue: new String('uuid_generate_v4()'),
+      },
+      username: {
+        type: 'text',
+        unique: true,
+      },
+      password_digest: 'text',
+      created_at: {
+        type: 'datetime',
+        defaultValue: new String('now()'),
+      },
+      updated_at: {
+        type: 'datetime',
+        defaultValue: new String('now()'),
+      },
+    })
+  ))
 );
 
 exports.down = db => (
