@@ -25,9 +25,9 @@ exports.up = db => (
       client_id: 'uuid',
       user_id: 'uuid',
       access_token: 'text',
-      access_token_expires_at: 'datetime',
+      access_token_expires_on: 'datetime',
       refresh_token: 'text',
-      refresh_token_expires_at: 'datetime',
+      refresh_token_expires_on: 'datetime',
       created_at: {
         type: 'datetime',
         defaultValue: new String('now()'),

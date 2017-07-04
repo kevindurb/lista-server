@@ -1,5 +1,6 @@
 module.exports = {
-  users: require('./queries/users'),
-  lists: require('./queries/lists'),
-  items: require('./queries/items'),
+  users: require('./domains/users'),
+  lists: require('./domains/lists'),
+  items: require('./domains/items'),
+  oauth: require('./domains/oauth'),
 }
